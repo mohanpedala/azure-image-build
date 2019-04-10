@@ -1,0 +1,37 @@
+{
+  "variables": {
+    "client_id": "{{env `CLIENT_ID`}}",
+    "client_secret": "{{env `CLIENT_SECRET`}}",
+    "tenant_id": "{{env `TENANT_ID`}}",
+    "subscription_id": "{{env `SUBSCRIPTION_ID`}}"
+  },
+  "builder": [{
+    "type": "azure-arm",
+    "client_id": "{{user `client_id`}}",
+    "client_secret": "{{user `client_secret`}}",
+    "tenant_id": "{{user `tenant_id`}}",
+    "subscription_id": "{{user `subscription_id`}}",
+
+    "managed_image_resource_group_name": "",
+    "managed_image_name": "ubuntu-18.04.2-LTS-Hardened",
+
+    "os_type": "Linux",
+    "image_publisher": "Canonical",
+    "image_offer": "UbuntuServer",
+    "image_sku": "",
+
+    "azure_tags": {
+      "dept": "cloud-team",
+      "task": "Image deployment"
+    },
+
+    "location": "West US",
+    "vm_size": ""
+    }],
+    "provisioner": [
+      {
+        "type": "shell",
+        "script": "../scripts/hardening.sh"
+      }
+    ]
+}
