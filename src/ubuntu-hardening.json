@@ -12,13 +12,13 @@
     "tenant_id": "{{user `tenant_id`}}",
     "subscription_id": "{{user `subscription_id`}}",
 
-    "managed_image_resource_group_name": "",
-    "managed_image_name": "ubuntu-18.04.2-LTS-Hardened",
+    "managed_image_resource_group_name": "image-automation",
+    "managed_image_name": "ubuntu-18.04.2-LTS-Hardened-{{timestamp}}",
 
     "os_type": "Linux",
     "image_publisher": "Canonical",
     "image_offer": "UbuntuServer",
-    "image_sku": "",
+    "image_sku": "18.04-LTS",
 
     "azure_tags": {
       "dept": "cloud-team",
@@ -26,7 +26,7 @@
     },
 
     "location": "West US",
-    "vm_size": ""
+    "vm_size": "Standard_B2ms"
     }],
     "provisioner": [
       {
