@@ -5,7 +5,7 @@
     "tenant_id": "{{env `TENANT_ID`}}",
     "subscription_id": "{{env `SUBSCRIPTION_ID`}}"
   },
-  "builder": [{
+  "builders": [{
     "type": "azure-arm",
     "client_id": "{{user `client_id`}}",
     "client_secret": "{{user `client_secret`}}",
@@ -28,10 +28,17 @@
     "location": "West US",
     "vm_size": "Standard_B2ms"
     }],
-    "provisioner": [
-      {
-        "type": "shell",
-        "script": "../scripts/hardening.sh"
-      }
+  "provisioners": [{
+    "type": "file",
+    "source": "script.sh",
+    "destination": "/tmp/script.sh"
+  },
+  {
+    "type": "shell",
+    "inline":[
+      "sudo apt-get update -y",
+      "sudo apt-get upgrade -y",
+      "sudo bash /tmp/script.sh"
     ]
+  }]
 }
