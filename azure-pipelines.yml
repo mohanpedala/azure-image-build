@@ -16,4 +16,17 @@ steps:
 - script: |
     echo Add other tasks to build, test, and deploy your project.
     echo See https://aka.ms/yaml
+- task: PackerBuild@1
+  inputs:
+    templateType: 'builtin'
+    ConnectedServiceName: 'Mohan-Pay-As-You-Go(1)(fe7e7d3e-7676-4748-a967-348a8ca48209)'
+    isManagedImage: true
+    location: 'westus2'
+    storageAccountName: 'saimageautomation'
+    azureResourceGroup: 'image-automation'
+    baseImageSource: 'default'
+    baseImage: 'Canonical:UbuntuServer:18.04-LTS:linux'
+    packagePath: '$(System.DefaultWorkingDirectory)'
+    deployScriptPath: 'script.sh'
+    imageUri: 'ubuntu-azure-devops-test'
   displayName: 'Run a multi-line script'
