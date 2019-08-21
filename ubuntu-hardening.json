@@ -1,10 +1,16 @@
 {
+  "variables": {
+    "client_id": "$(CLIENT_ID)",
+    "client_secret": "{CLIENT_SECRET}",
+    "tenant_id": "{TENANT_ID}",
+    "subscription_id": "{SUBSCRIPTION_ID}"
+  },
   "builders": [{
     "type": "azure-arm",
-    "client_id": "$(CLIENT_ID)",
-    "client_secret": "$(CLIENT_SECRET)",
-    "tenant_id": "$(TENANT_ID)",
-    "subscription_id": "$(SUBSCRIPTION_ID)",
+    "client_id": "{{user `client_id`}}",
+    "client_secret": "{{user `client_secret`}}",
+    "tenant_id": "{{user `tenant_id`}}",
+    "subscription_id": "{{user `subscription_id`}}",
 
     "managed_image_resource_group_name": "image-automation",
     "managed_image_name": "ubuntu-18.04.2-LTS-Hardened-{{timestamp}}",
