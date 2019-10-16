@@ -17,7 +17,7 @@
     "virtual_network_subnet_name"             : "packer-subnet",
     "private_virtual_network_with_public_ip"  : "true",
     "managed_image_resource_group_name"       : "image-automation",
-    "managed_image_name"                      : "ubuntu-18.04.2-LTS-Hardened-{{isotime | clean_resource_name}}"",
+    "managed_image_name"                      : "ubuntu-18.04.2-LTS-Hardened-{{isotime | clean_resource_name}}",
 
     "os_type"        : "Linux",
     "image_publisher": "Canonical",
