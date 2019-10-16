@@ -17,7 +17,7 @@ steps:
   displayName: 'Packer environment Validation'
   inputs:
     targetType: filePath
-    filePath: ./packages/validation.sh
+    filePath: ./pipelines/validation.sh
 
 - bash: |
    packer version
