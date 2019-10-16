@@ -9,7 +9,9 @@ pool:
 
 steps:
 - task: riezebosch.Packer.PackerTool.PackerTool@0
-  displayName: 'Use Packer 1.3.4'
+  displayName: 'Use Packer 1.4.4'
+  inputs:
+    version: 1.4.4
 
 - task: Bash@3
   displayName: 'Packer environment Validation'
