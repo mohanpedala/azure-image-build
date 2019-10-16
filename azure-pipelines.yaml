@@ -1,0 +1,27 @@
+trigger:
+  branches:
+    include:
+    - master
+
+pool:
+  name: Azure Pipelines
+
+steps:
+- task: riezebosch.Packer.PackerTool.PackerTool@0
+  displayName: 'Use Packer 1.3.4'
+
+- task: Bash@3
+  displayName: 'Packer environment Validation'
+  inputs:
+    targetType: filePath
+    filePath: ./packages/validation.sh
+
+- bash: |
+   packer version
+   packer build ubuntu-hardening.json
+  displayName: 'Build Linux Image'
+  env:
+    CLIENT_ID: $(CLIENT_ID)
+    CLIENT_SECRET: $(CLIENT_SECRET)
+    TENANT_ID: $(TENANT_ID)
+    SUBSCRIPTION_ID: $(SUBSCRIPTION_ID)
