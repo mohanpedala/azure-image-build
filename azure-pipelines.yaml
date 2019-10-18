@@ -23,6 +23,7 @@ steps:
    ls -al
    packer version
    packer build ubuntu-hardening.json
+   packer build windows.json
   displayName: 'Build Linux Image'
   env:
     CLIENT_ID: $(CLIENT_ID)

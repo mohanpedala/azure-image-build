@@ -1,0 +1,51 @@
+{
+    "variables": {
+      "client_id"       : "{{env `CLIENT_ID`}}",
+      "client_secret"   : "{{env `CLIENT_SECRET`}}",
+      "tenant_id"       : "{{env `TENANT_ID`}}",
+      "subscription_id" : "{{env `SUBSCRIPTION_ID`}}"
+    },
+    "builders": [{
+      "type"                                    : "azure-arm",
+      "client_id"                               : "{{user `client_id`}}",
+      "client_secret"                           : "{{user `client_secret`}}",
+      "tenant_id"                               : "{{user `tenant_id`}}",
+      "subscription_id"                         : "{{user `subscription_id`}}",
+  
+      "build_resource_group_name"               : "packer-rg",
+      "virtual_network_name"                    : "packer-vnet",
+      "virtual_network_subnet_name"             : "packer-subnet",
+      "private_virtual_network_with_public_ip"  : "true",
+      "managed_image_resource_group_name"       : "image-automation",
+      "managed_image_name"                      : "windows-{{isotime | clean_resource_name}}",
+  
+      "os_type"                               : "Windows",
+      "image_publisher"                       : "MicrosoftWindowsServer",
+      "image_offer"                           : "WindowsServer",
+      "image_sku"                             : "2016-Datacenter",
+
+      "communicator"                          : "winrm",
+      "winrm_use_ssl"                         : true,
+      "winrm_insecure"                        : true,
+      "winrm_timeout"                         : "5m",
+      "winrm_username"                        : "packer",
+
+      "azure_tags": {
+        "dept": "cloud-team",
+        "task": "Image deployment"
+      },
+  
+      "vm_size": "Standard_B2ms"
+      }],
+    "provisioners": [{
+    "type"       : "file",
+    "source"     : "script.sh",
+    "destination": "C:\\Windows\\Temp\\script.sh"
+    },
+    {
+    "type": "powershell",
+    "inline":[
+        "ls C:\\Windows\\Temp\\"
+    ]
+    }]
+}
